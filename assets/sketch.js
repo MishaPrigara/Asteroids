@@ -6,11 +6,13 @@ var background_song;
 var gameover_song;
 var shot_sound;
 
-
-function setup() {
+function preload() {
 	background_song = document.getElementById("background-music");
 	gameover_song = document.getElementById("gameover-music");
 	shot_sound = document.getElementById("shot-music");
+}
+
+function setup() {
 	createCanvas(windowWidth, windowHeight);
 	background_song.play();
 	ship = new Ship();
