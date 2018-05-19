@@ -17,7 +17,7 @@ function setup() {
 	background_song.play();
 	ship = new Ship();
 	score = new Score();
-	frameRate(60);
+	frameRate(144);
 	for(var i = 0; i < 10; ++i) {
 		asteroids.push(new Asteroid());
 		if(ship.hits(asteroids[i])) {
