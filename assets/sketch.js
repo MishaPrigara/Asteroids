@@ -5,11 +5,13 @@ var score;
 var background_song;
 var gameover_song;
 var shot_sound;
+var boosting_sound;
 
 function preload() {
 	background_song = document.getElementById("background-music");
 	gameover_song = document.getElementById("gameover-music");
 	shot_sound = document.getElementById("shot-music");
+	boosting_sound = document.getElementById("boosting-sound");
 }
 
 function setup() {
@@ -33,9 +35,18 @@ function isPlaying(audio) {
 function draw() {
 	background(0);
 
-	if(!isPlaying(background_song) && !ship.removed){
+	if(!isPlaying(background_song) && !ship.removed) {
 		background_song.currentTime = 0;
 		background_song.play();
+	}
+
+	if(!isPlaying(boosting_sound) && ship.isBoosting) {
+			boosting_sound.currentTime = 0;
+			boosting_sound.play();
+	}
+
+	if(isPlaying(boosting_sound) && !ship.isBoosting) {
+		boosting_sound.pause();
 	}
 
 	for(var i = asteroids.length; i <= 10 + floor(score.score / 500); ++i) {
