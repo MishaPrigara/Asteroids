@@ -48,6 +48,10 @@ function Ship() {
 		rotate(this.heading + PI / 2);
 		fill(0);
 		stroke(255);
+		if(this.isBoosting) {
+			triangle(-this.r / 3.0 - 7, this.r + 5, this.r / 3.0 - 7, this.r + 5, -7, -this.r + 50);
+			triangle(-this.r / 3.0 + 7, this.r + 5, this.r / 3.0 + 7, this.r + 5, 7, -this.r + 50);
+		}
 		triangle(-this.r, this.r, this.r, this.r, 0, -this.r - 5);
 		pop();
 	}
