@@ -33,8 +33,11 @@ function isPlaying(audio) {
 }
 
 function draw() {
-	background(0);
 
+
+
+	background(0);
+	
 	if(!isPlaying(background_song) && !ship.removed) {
 		background_song.currentTime = 0;
 		background_song.play();
@@ -49,9 +52,9 @@ function draw() {
 		boosting_sound.pause();
 	}
 
-	for(var i = asteroids.length; i <= 10 + floor(score.score / 500); ++i) {
+	for(var i = asteroids.length; i < 10 + floor(score.score / 500); ++i) {
 		var newAsteroid = new Asteroid();
-		if(ship.hits(newAsteroid))continue;
+		if(dist(ship.pos.x, ship.pos.y, newAsteroid.pos.x, newAsteroid.pos.y) < ship.r + newAsteroid.r + 100)continue;
 		asteroids.push(newAsteroid);
 	}
 
