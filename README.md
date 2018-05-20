@@ -4,7 +4,7 @@ This is a representation of an old game called 'Asteroids' written on JavaScript
 # Music
 All sounds in the game were made by Empty Sphere. Here are links to [SoundCloud](https://soundcloud.com/empty_sphere) and [GitHub](https://github.com/PeterUA) 
 
-# Here are some screenshots of the game
+# Screenshots
 
  - ![](./screenshots/im1.png)
 
