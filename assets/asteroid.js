@@ -25,7 +25,7 @@ function Asteroid(pos, r) {
 	this.setDots = function() {
 		for(var i = 0; i < this.total; ++i) {
 			var angle = map(i, 0, this.total, 0, TWO_PI);
-			var r = this.r + this.offset[i]
+			var r = this.r + this.offset[i];
 			var x = r * cos(angle);
 			var y = r * sin(angle);
 
@@ -50,7 +50,7 @@ function Asteroid(pos, r) {
 		stroke(255);
 
 		rotate(this.heading);
-		
+
 		beginShape();
 		for(var i = 0; i < this.total; ++i) {
 			var angle = map(i, 0, this.total, 0, TWO_PI);
@@ -86,6 +86,8 @@ function Asteroid(pos, r) {
 		} else if(this.pos.y < -this.r) {
 			this.pos.y = height + this.r;
 		}
+		this.dots = [];
+		this.setDots();
 	}
 
 

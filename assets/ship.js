@@ -11,6 +11,7 @@ function Ship() {
 
 
 	this.setDots = function() {
+		this.dots = [];
 		if(!this.dots.length) {
 			var x = -this.r * cos(this.heading + PI / 2.0) - this.r * sin(this.heading + PI / 2.0);
 			var y = -this.r * sin(this.heading + PI / 2.0) + this.r * cos(this.heading + PI / 2.0);
@@ -40,6 +41,9 @@ function Ship() {
 		} else if(this.pos.y < -this.r) {
 			this.pos.y = height + this.r;
 		}
+
+		this.dots = [];
+		this.setDots();
 	}
 
 	this.boosting = function(b) {
@@ -64,9 +68,9 @@ function Ship() {
 
 	this.render = function() {
 		if(this.removed) return;
-		push();
 		this.dots = [];
 		this.setDots();
+		push();
 		translate(this.pos.x, this.pos.y);
 		rotate(this.heading + PI / 2);
 		fill(0);
@@ -86,13 +90,13 @@ function Ship() {
 	this.hits = function(asteroid) {
 		if(this.removed)return false;
 
-		var asteroidCenter = asteroid.pos;
-		var asteroidDots = asteroid.dots;
+		let asteroidCenter = asteroid.pos.copy();
+		let asteroidDots = asteroid.dots.slice(0);
 
 		asteroidDots.push(asteroidDots[0]);
-	
-		var shipCenter = this.pos;
-		var shipDots = this.dots;
+
+		let shipCenter = this.pos.copy();
+		let shipDots = this.dots.slice(0);
 		shipDots.push(shipDots[0]);
 
 
@@ -113,7 +117,7 @@ function Ship() {
 	}
 
 	this.dotInTriangle = function(d, a, b, c) {
-		if(Math.abs(this.area(a, b, c) - this.area(d, a, b) - this.area(d, a, c) - this.area(d, b, c)) < this.EPS) {
+		if(Math.abs(this.area(a, b, c)) > this.EPS && Math.abs(this.area(a, b, c) - this.area(d, a, b) - this.area(d, a, c) - this.area(d, b, c)) < this.EPS) {
 			return true;
 		}
 		return false;

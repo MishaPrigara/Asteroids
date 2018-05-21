@@ -15,6 +15,7 @@ function preload() {
 }
 
 function setup() {
+	
 	createCanvas(windowWidth, windowHeight);
 	background_song.play();
 	ship = new Ship();
@@ -37,7 +38,7 @@ function draw() {
 
 
 	background(0);
-	
+
 	if(!isPlaying(background_song) && !ship.removed) {
 		background_song.currentTime = 0;
 		background_song.play();
@@ -60,6 +61,7 @@ function draw() {
 
 	for(var i = 0; i < asteroids.length; ++i) {
 		if(ship.hits(asteroids[i])){
+
 			background_song.pause();
 			gameover_song.play();
 			ship.remove();
