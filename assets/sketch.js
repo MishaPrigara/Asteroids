@@ -6,16 +6,18 @@ var background_song;
 var gameover_song;
 var shot_sound;
 var boosting_sound;
+var blow_sound;
 
 function preload() {
 	background_song = document.getElementById("background-music");
 	gameover_song = document.getElementById("gameover-music");
 	shot_sound = document.getElementById("shot-music");
 	boosting_sound = document.getElementById("boosting-sound");
+	blow_sound = document.getElementById("blow-music");
 }
 
 function setup() {
-	
+
 	createCanvas(windowWidth, windowHeight);
 	background_song.play();
 	ship = new Ship();
@@ -82,7 +84,8 @@ function draw() {
 		}
 		for(var j = asteroids.length - 1; j >= 0; --j) {
 			if(lasers[i].hits(asteroids[j])) {
-
+				blow_sound.currentTime = 0;
+				blow_sound.play();
 				score.addScore(asteroids[j].r);
 
 				var newAsteroids = asteroids[j].breakup();
